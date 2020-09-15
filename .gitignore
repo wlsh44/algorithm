@@ -5,3 +5,5 @@ bin
 .vscode
 
 .DS_Store
+
+test.cpp
