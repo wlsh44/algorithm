@@ -14,13 +14,14 @@ int maxSize;
 
 void bfs(int x, int y) {
     queue<pair<int, int> > q;
-    int size = 1;
+    int size = 0;
 
     q.push(make_pair(x, y));
     visited[x][y] = true;
     while (!q.empty()) {
         pair<int, int> v = q.front();
         q.pop();
+        size++;
 
         for (int i = 0; i < 4; i++) {
             int nx = v.first + dx[i];
@@ -29,7 +30,6 @@ void bfs(int x, int y) {
             if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
                 if (graph[nx][ny] == 1 && visited[nx][ny] == false) {
                     visited[nx][ny] = true;
-                    size++;
                     q.push(make_pair(nx, ny));
                 }
             }

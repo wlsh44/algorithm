@@ -26,7 +26,6 @@ int main() {
             if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
                 if (graph[nx][ny] == 1 && visited[nx][ny] == false) {
                     visited[nx][ny] = true;
-                    //something...
                     q.push({nx, ny});
                 }
             }
