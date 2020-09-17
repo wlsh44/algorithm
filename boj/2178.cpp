@@ -13,7 +13,6 @@ int n, m;
 
 void bfs(int x, int y) {
     queue<pair<int, int> > q;
-    bool flag = false;
 
     q.push(make_pair(x, y));
     visited[x][y] = true;
@@ -29,7 +28,6 @@ void bfs(int x, int y) {
                 if (graph[nx][ny] != 0 && visited[nx][ny] == false) {
                     graph[nx][ny] = graph[v.first][v.second] + 1;
                     visited[nx][ny] = true;
-                    flag = true;
                     q.push(make_pair(nx, ny));
                 }
             }
