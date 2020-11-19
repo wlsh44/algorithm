@@ -7,7 +7,8 @@ using namespace std;
 
 int n;
 int arr[20][20];
-int player[20];
+vector<int> player;
+vector<int> check;
 int res;
 int s_sum;
 int l_sum;
@@ -22,20 +23,29 @@ void solve() {
 		}
 	}
 	for (int i = 0; i < n; i++) {
-		player[i] = i;
+		if (i < n / 2) {
+			player.push_back(0);
+			check.push_back(0);
+		}
+		else {
+			player.push_back(1);
+			check.push_back(1);
+		}
 	}
 
 	do {
 		vector<int> start;
 		vector<int> link;
 
+		if (player == check)
+			continue;
 		l_sum = 0;
 		s_sum = 0;
 		for (int i = 0; i < n; i++) {
-			if (i < n / 2)
-				start.push_back(player[i]);
+			if (player[i] == 0)
+				start.push_back(i);
 			else
-				link.push_back(player[i]);
+				link.push_back(i);
 		}
 
 		for (int i = 0; i < n / 2 - 1; i++) {
@@ -45,9 +55,75 @@ void solve() {
 			}
 		}
 		res = min(res, abs(s_sum - l_sum));
-	} while (next_permutation(player, player + n));
+		copy(player.begin(), player.end(), check.begin());
+	} while (next_permutation(player.begin(), player.end()));
 	cout << res;
 }
+// void get_sum() {
+// 	vector<int> start;
+// 	vector<int> link;
+	
+// 	for (int i = 0; i < n; i++) {
+// 		if (player[i] == 0)
+// 			start.push_back(i);
+// 		else
+// 			link.push_back(i);
+// 	}
+
+// 	for (int i = 0; i < n / 2 - 1; i++) {
+// 		for (int j = i + 1; j < n / 2; j++) {
+// 			s_sum += arr[start[i]][start[j]] + arr[start[j]][start[i]];
+// 			l_sum += arr[link[i]][link[j]] + arr[link[j]][link[i]];
+// 		}
+// 	}
+// 	res = min(res, abs(s_sum - l_sum));
+// }
+
+// bool is_finish() {
+// 	for (int i = 0; i < n / 2; i++)
+// 		if (player[i] == 0)
+// 			return false;
+// 	get_sum();
+// 	return true;
+// }
+
+// void shift_left() {
+// 	int i = 0;
+
+// 	while (player[i] == 1) {
+// 		i++;
+// 	}
+// 	while (player[i] == 0) {
+// 		i++;
+// 	}
+// 	player[i] = 0;
+// 	player[i - 1] = 1;
+// }
+
+// void solve() {
+// 	cin >> n;
+
+// 	res = INT_MAX;
+// 	for (int i = 0; i < n; i++) {
+// 		for (int j = 0; j < n; j++) {
+// 			cin >> arr[i][j];
+// 		}
+// 	}
+// 	for (int i = 0; i < n; i++) {
+// 		if (i < n / 2)
+// 			player[i] = 0;
+// 		else
+// 			player[i] = 1;
+// 	}
+
+// 	while (!is_finish()) {
+// 		l_sum = 0;
+// 		s_sum = 0;
+// 		get_sum();
+// 		shift_left();
+// 	}
+// 	cout << res;
+// }
 
 int main() {
     ios::sync_with_stdio(0);
