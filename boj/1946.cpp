@@ -7,35 +7,37 @@ using namespace std;
 
 int T;
 int N;
-vector<pair<int, int> > v;
 
 bool cmp(const pair<int, int> &a, const pair<int, int> &b) {
-	return a.first > b.first;
+	return a.first < b.first;
 }
 
 void solve() {
 	cin >> T;
 	
 	for (int t = 0; t < T; t++) {
+		vector<pair<int, int> > v;
+		int grade;
 		int res;
 
 		cin >> N;
+		grade = N;
 		res = N;
 		for (int i = 0; i < N; i++) {
 			int tmp1, tmp2;
 			bool flag = false;
 
 			cin >> tmp1 >> tmp2;
-			for (int j = 0; j < v.size(); j++) {
-				if (tmp1 > v[j].first && tmp2 > v[j].second) {
-					flag = true;
-					break;
-				} else if (tmp1 < v.[j].first && v.)
-			}
-			if (!flag)
-				v.push_back(make_pair(tmp1, tmp2));
+			v.push_back(make_pair(tmp1, tmp2));
 		}
-		cout << v.size() << "\n";
+		sort(v.begin(), v.end());
+		for (int i = 0; i < v.size(); i++) {
+			if (v[i].second < grade)
+				grade = v[i].second;
+			else if (v[i].second > grade)
+				res--;
+		}
+		cout << res << "\n";
 	}
 }
 
