@@ -3,62 +3,47 @@
 
 using namespace std;
 
-vector<vector<int> > v(50, vector<int>(50));
-vector<vector<int> > v2(50, vector<int>(50));
+vector<string> v;
+vector<string> v2;
 int N, M;
-int res = 2147483647;
+int res;
 
 void change(int row, int col) {
 	for (int i = row; i < row + 3; i++) {
 		for (int j = col; j < col + 3; j++) {
-			if (v[i][j] == 0) v[i][j] = 1;
-			else v[i][j] = 0;
+			if (v[i][j] == '0') v[i][j] = '1';
+			else v[i][j] = '0';
 		}
 	}
-}
-
-void rec(int n, int row, int col) {
-	if (v == v2) {
-		if (res > n)
-		res = n;
-		return ;
-	} else {
-		if (col == M - 3) {
-			col = 0;
-			if (++row == N - 3) {
-				cout << -1;
-				return ;
-			}
-		}
-		for (int i = col; i < M - 3; i++) {
-			change(row, i);
-			rec(n + 1, row, i + 1);
-			change(row, i);
-		}
-	}
+	res++;
 }
 
 void solve() {
 	cin >> N >> M;
 
 	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) {
-			int tmp;
+		string tmp;
 
-			cin >> tmp;
-			v[i][j] = tmp;
-		}
+		cin >> tmp;
+		v.push_back(tmp);
 	}
 	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) {
-			int tmp;
+		string tmp;
 
-			cin >> tmp;
-			v2[i][j] = tmp;
+		cin >> tmp;
+		v2.push_back(tmp);
+	}
+
+	for (int i = 0; i < N - 2; i++) {
+		for (int j = 0; j < M - 2; j++) {
+			if (v[i][j] != v2[i][j]) 
+				change(i, j);
 		}
 	}
-	rec(0, 0, 0);
-	cout << res;
+	if (v == v2)
+		cout << res;
+	else 
+		cout << -1;
 }
 
 int main() {
