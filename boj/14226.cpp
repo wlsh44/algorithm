@@ -1,21 +1,19 @@
 #include <iostream>
-#include <climits>
 #include <queue>
 #include <utility>
 
 using namespace std;
 
-int dp[2001][2001];
 int S;
 int t;
 bool visited[2001][2001];
-
+queue<pair<int, int> > q;
 
 void bfs() {
-queue<pair<int, int> > q;
 	t = 1;
 	q.push(make_pair(1, 1));
 	visited[1][1] = true;
+
 	while (!q.empty()) {
 		int size = q.size();
 
@@ -48,12 +46,9 @@ queue<pair<int, int> > q;
 }
 
 void solve() {
-	//cin >> S;
-S=872;
-	//fill(&dp[0][0], &dp[2000][2000], INT_MAX / 2);
-	//dp[1][1] = 1;
+	cin >> S;
+
 	bfs();
-	//cout << min_time;
 }
 
 int main() {
