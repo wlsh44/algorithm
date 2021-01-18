@@ -11,7 +11,8 @@ bool visited[N][N];
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 int n, m;
-int main() {
+
+int bfs() {
     queue<pair<int, int>> q;
 
     visited[0][0] = true;
