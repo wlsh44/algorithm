@@ -15,26 +15,21 @@ void solve()
 	cin >> N;
 
 	for (int i = 1; i <= N; i++)
-	{
 		cin >> graph[i];
-	}
 
-	for (int i = 1; i <= N; i++)
-	{
+	for (int i = 1; i <= N; i++) {
 		int num;
 		int cur;
 
 		cur = i;
 		num = 0;
 		fill(visited, visited + MAX, false);
-		while (!visited[cur])
-		{
+		while (!visited[cur]) {
 			visited[cur] = true;
 			num++;
 			cur = graph[cur];
 		}
-		if (num > maxNum)
-		{
+		if (num > maxNum) {
 			maxNum = num;
 			ans = i;
 		}
