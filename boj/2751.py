@@ -1,13 +1,7 @@
 import sys
 
 N = int(input())
-
-arr = []
-
-for i in range(N):
-	arr.append(int(sys.stdin.readline().rstrip()))
-
+arr = [list(map(int, input().split())) for _ in range(N)]
 arr.sort()
-
 for num in arr:
 	print(num)
