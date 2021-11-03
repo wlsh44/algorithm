@@ -1,13 +1,26 @@
 N = int(input())
+#
+# check = [False, False] + [True] * N
+# primes = []
+# for i in range(2, N + 1):
+#     if check[i]:
+#         primes.append(i)
+#         for j in range(i * 2, N + 1, i):
+#             check[j] = False
 
-check = [False, False] + [True] * N
+import math
+
 primes = []
 for i in range(2, N + 1):
-    if check[i]:
+    result = True
+    for j in range(2, i):
+        if i % j == 0:
+            result = False
+    if result:
         primes.append(i)
-        for j in range(i * 2, N + 1, i):
-            check[j] = False
 
+
+print(primes)
 primes += [0]
 i, j = 0, 0
 sum_ = 0
