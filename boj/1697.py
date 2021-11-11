@@ -19,7 +19,6 @@ def bfs(root, k, dist):
                 if 0 <= nx < MAX and not dist[nx]:
                     dist[nx] += dist[v] + 1
                     q += [nx]
-
     return dist[v]
 
 
