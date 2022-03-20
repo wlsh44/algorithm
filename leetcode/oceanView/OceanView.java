@@ -8,14 +8,10 @@ public class OceanView {
         Stack<Integer> stack = new Stack<>();
 
         for (int i = 0; i < heights.length; i++) {
-            if (stack.isEmpty()) {
-                stack.push(i);
-            } else {
-                while (!stack.isEmpty() && heights[stack.peek()] <= heights[i]) {
-                    stack.pop();
-                }
-                stack.push(i);
+            while (!stack.isEmpty() && heights[stack.peek()] <= heights[i]) {
+                stack.pop();
             }
+            stack.push(i);
         }
         return stack.stream().mapToInt(x -> x).toArray();
     }
@@ -32,5 +28,6 @@ public class OceanView {
         print(findOceanViewBuildings(new int[]{4, 3, 2, 1}));
         print(findOceanViewBuildings(new int[]{1, 3, 2, 4}));
         print(findOceanViewBuildings(new int[]{2, 2, 2, 2}));
+        print(findOceanViewBuildings(new int[]{2}));
     }
 }
