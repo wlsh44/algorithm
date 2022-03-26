@@ -3,38 +3,36 @@ package leetcode;
 import java.util.*;
 
 class HitCounter {
-
-    private final Stack<Integer> stack = new Stack<>();
-
-    public void hit(int timestamp) {
-        stack.push(timestamp);
-    }
-
-    public int getHits(int timestamp) {
-        int sum = 0;
-        Stack<Integer> s = (Stack<Integer>) stack.clone();
-
-        while (!s.isEmpty() && s.pop() > timestamp - 300) {
-            sum++;
-        }
-        return sum;
-    }
-
-//    private final Map<Integer, Integer> map = new HashMap<>();
+//
+//    private final Stack<Integer> stack = new Stack<>();
 //
 //    public void hit(int timestamp) {
-//        map.put(timestamp, map.getOrDefault(timestamp, 0) + 1);
+//        stack.push(timestamp);
 //    }
 //
 //    public int getHits(int timestamp) {
-//        int start = Math.max(timestamp - 300, 0);
+//        int sum = 0;
+//        Stack<Integer> s = (Stack<Integer>) stack.clone();
 //
-//        return map.entrySet().stream()
-//                .filter(x -> x.getKey() > start && x.getKey() <= timestamp)
-//                .map(Map.Entry::getValue)
-//                .mapToInt(Integer::intValue)
-//                .sum();
+//        while (!s.isEmpty() && s.pop() > timestamp - 300) {
+//            sum++;
+//        }
+//        return sum;
 //    }
+
+    private final Map<Integer, Integer> map = new HashMap<>();
+
+    public void hit(int timestamp) {
+        map.put(timestamp, map.getOrDefault(timestamp, 0) + 1);
+    }
+
+    public int getHits(int timestamp) {
+        return map.entrySet().stream()
+                .filter(x -> x.getKey() > timestamp - 300 && x.getKey() <= timestamp)
+                .map(Map.Entry::getValue)
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
 }
 
 public class _362 {
@@ -43,8 +41,6 @@ public class _362 {
         System.out.println(counter.getHits(1));
         counter.hit(1); // timestamp 1에 hit 기록
         counter.hit(2); // timestamp 2에 hit 기록
-        counter.hit(3); // timestamp 3에 hit 기록
-        counter.hit(3); // timestamp 3에 hit 기록
         counter.hit(3); // timestamp 3에 hit 기록
         System.out.println(counter.getHits(3)); // timestamp 4로부터 최근 5분간의 hit수인 3을 return
         System.out.println(counter.getHits(4)); // timestamp 4로부터 최근 5분간의 hit수인 3을 return
