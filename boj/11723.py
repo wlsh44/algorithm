@@ -7,7 +7,7 @@ s = [0] * 21
 M = int(input())
 
 for _ in range(M):
-    cmd = input()
+    cmd = input().rstrip()
 
     if cmd == "all":
         s = [1] * 21
