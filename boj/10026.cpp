@@ -60,6 +60,7 @@ void solve() {
 			graph[i][j] = str[j];
 		}
 	}
+
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
 			if (!visited[i][j]) {
@@ -68,6 +69,7 @@ void solve() {
 			}
 		}
 	}
+
 	fill(&visited[0][0], &visited[N - 1][N], 0);
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
@@ -77,6 +79,7 @@ void solve() {
 			}
 		}
 	}
+
 	cout << res1 << " " << res2;
 }
 
