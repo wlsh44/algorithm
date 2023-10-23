@@ -1,9 +1,12 @@
-N = int(input())
+arr = []
+for i in range(5):
+    arr.append([None] * 15)
+    row = list(input())
+    for j in range(len(row)):
+        arr[i][j] = row[j]
 
-arr = [i for i in range(4)]
-for _ in range(N):
-    a, b = map(int, input().split())
-    i1 = arr.index(a)
-    i2 = arr.index(b)
-    arr[i1], arr[i2] = b, a
-print(arr[1])
+for i in range(15):
+    for j in range(5):
+        if arr[j][i] == None:
+            continue
+        print(arr[j][i], end="")
