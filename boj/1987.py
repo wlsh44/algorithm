@@ -25,3 +25,4 @@ def dfs(y, x, depth):
 
 dfs(0, 0, 1)
 print(num)
+
