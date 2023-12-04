@@ -16,7 +16,8 @@ def dfs(y, x, depth):
 
     num = max(num, depth)
     for i in range(4):
-        ny, nx = y + d[i][0], x + d[i][1]
+        ny = y + d[i][0]
+        nx = x + d[i][1]
         if 0 <= ny < R and 0 <= nx < C and graph[ny][nx] not in visited:
             visited.add(graph[ny][nx])
             dfs(ny, nx, depth + 1)
