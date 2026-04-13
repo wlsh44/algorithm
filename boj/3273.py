@@ -18,3 +18,19 @@ while left < right:
         ans += 1
         left += 1
 print(ans)
+
+
+# ---
+
+n = int(input())
+
+arr = set(map(int, input().split()))
+
+x = int(input())
+
+res = 0
+for i in arr:
+  if i < x - i and x - i in arr:
+    res += 1
+
+print(res)
