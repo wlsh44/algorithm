@@ -13,7 +13,7 @@ for _ in range(m):
 
 def bfs(start):
     q = deque([(start, 1)])
-    visited = set([(start)])
+    visited = {(start)}
     cnt = 0
 
     while q:
